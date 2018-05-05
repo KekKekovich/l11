@@ -16,9 +16,11 @@
 #include "G4Box.hh"
 
 #include "G4VUserDetectorConstruction.hh"
-
+#include <DetGeometryMessenger.hh>
 class G4VPhysicalVolume;
 class G4LogicalVolume;
+class DetGeometryMessenger;
+
 
 class DetGeometry  : public G4VUserDetectorConstruction
 {
@@ -30,6 +32,17 @@ private:
     G4LogicalVolume*            logicWorld;
     virtual G4VPhysicalVolume*  Construct();
     G4VPhysicalVolume*          physWorld;
+public:
+    void setBoxYsize(G4double boxYsize);
+
+private:
+    G4double                    boxYsize;
+    G4double                    psi;
+public:
+    void setPsi(G4double psi);
+
+private:
+    DetGeometryMessenger*       detGeometryMessenger;
 public:
     DetGeometry();
     virtual ~DetGeometry();

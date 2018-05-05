@@ -12,17 +12,9 @@ ActionInit::~ActionInit()
 
 void ActionInit::Build() const
 {
-    auto runAction = new RunAction(scoring);
-    auto eventAction = new EventAction(runAction);
 
 
     SetUserAction(new PrimaryGen());
-    SetUserAction(new StepAction(eventAction));
 
-
-    SetUserAction(runAction);
-
-
-    SetUserAction(eventAction);
 
 }

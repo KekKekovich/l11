@@ -12,14 +12,11 @@ void EventAction::BeginOfEventAction(const G4Event *anEvent) {
     EnergyDeposit = 0;
 }
 
-void EventAction::EndOfEventAction(const G4Event *anEvent) {
-    if(EnergyDeposit>=50*keV)
-        run->setResult();
 
-}
-
-void EventAction::addEnergyDeposit(G4double EnergyDeposit) {
-    EventAction::EnergyDeposit += EnergyDeposit;
-}
 
 EventAction::EventAction(RunAction* _run) : run(_run) {}
+
+
+void EventAction::EndOfEventAction(const G4Event *anEvent) {
+
+}

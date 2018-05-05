@@ -17,9 +17,10 @@ public:
     EventAction(RunAction* run);
 
 public:
-    void BeginOfEventAction(const G4Event* anEvent);
-    void EndOfEventAction(const G4Event* anEvent);
 
 
+    void BeginOfEventAction(const G4Event *anEvent) override;
+
+    void EndOfEventAction(const G4Event *anEvent) override;
 };
 #endif //L11_EVENTACTION_HH
