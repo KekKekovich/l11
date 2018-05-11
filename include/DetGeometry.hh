@@ -38,8 +38,10 @@ public:
 private:
     G4double                    boxYsize;
     G4double                    psi;
+    G4Material*                 box_mat;
 public:
     void setPsi(G4double psi);
+    void setDetMaterial(G4String newValue);
 
 private:
     DetGeometryMessenger*       detGeometryMessenger;

@@ -10,6 +10,7 @@
 #include <DetGeometry.hh>
 #include <PrimaryGen.hh>
 #include <G4UIcmdWithADouble.hh>
+#include <G4UIcmdWithAString.hh>
 
 class DetGeometry;
 class PrimaryGen;
@@ -18,7 +19,9 @@ class DetGeometryMessenger: public G4UImessenger{
     G4UIcmdWithAnInteger * int_cmd;
     G4UIcmdWithADouble * psi_cmd;
     G4UIcommand * cmd;
+    G4UIcommand * cmd1;
     G4UIcmdWithADouble * energy_cmd;
+    G4UIcmdWithAString* mat_cmd;
 
     DetGeometry* my_geom;
     PrimaryGen * my_energy;
