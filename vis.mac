@@ -9,7 +9,7 @@
 /vis/viewer/set/viewpointVector -1 0 0
 /vis/viewer/set/lightsVector -1 0 0
 /vis/viewer/set/style surface
-/vis/viewer/set/background white
+/vis/viewer/set/background black
 # Draw smooth trajectories at end of event, showing trajectory points
 # as markers 2 pixels wide:
 /vis/scene/add/trajectories smooth

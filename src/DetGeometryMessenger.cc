@@ -13,6 +13,9 @@ void DetGeometryMessenger::SetNewValue(G4UIcommand *command, G4String newValue) 
         my_geom->setBoxYsize(int_cmd->GetNewIntValue(newValue));
     if(command == psi_cmd)
         my_geom->setPsi(psi_cmd->GetNewDoubleValue(newValue));
+    if(command == energy_cmd) {
+        my_energy->setEnergy(energy_cmd->GetNewDoubleValue(newValue));
+    }
 }
 
 DetGeometryMessenger::DetGeometryMessenger(DetGeometry* geom): my_geom(geom){
@@ -24,8 +27,15 @@ DetGeometryMessenger::DetGeometryMessenger(DetGeometry* geom): my_geom(geom){
 
     psi_cmd = new G4UIcmdWithADouble("/my_geom/set_psi",this);
     psi_cmd->SetGuidance("Set Psi");
+
+}
+
+DetGeometryMessenger::DetGeometryMessenger(PrimaryGen *energy): my_energy(energy) {
+    energy_cmd = new G4UIcmdWithADouble("/my_geom/energy_cmd", this);
 }
 
 DetGeometryMessenger::~DetGeometryMessenger() {
 
 }
+
+
