@@ -7,9 +7,11 @@
 
 #include <G4UserSteppingAction.hh>
 #include <EventAction.hh>
+#include <G4String.hh>
 class StepAction: public G4UserSteppingAction{
 private:
     EventAction* eventAction;
+    G4String pName;
 public:
     StepAction(EventAction* event);
     void UserSteppingAction(const G4Step*);

@@ -11,6 +11,8 @@
 #include <PrimaryGen.hh>
 #include <G4UIcmdWithADouble.hh>
 #include <G4UIcmdWithAString.hh>
+#include <G4UIcmdWith3Vector.hh>
+#include <StepAction.hh>
 
 class DetGeometry;
 class PrimaryGen;
@@ -22,12 +24,16 @@ class DetGeometryMessenger: public G4UImessenger{
     G4UIcommand * cmd1;
     G4UIcmdWithADouble * energy_cmd;
     G4UIcmdWithAString* mat_cmd;
+    G4UIcmdWith3Vector * cmdPosition;
+    G4UIcmdWithAString* name_cmd;
 
     DetGeometry* my_geom;
     PrimaryGen * my_energy;
+    StepAction * my_name;
 public:
     DetGeometryMessenger(DetGeometry* geom);
     DetGeometryMessenger(PrimaryGen* energy);
+    DetGeometryMessenger(StepAction* pName);
     ~DetGeometryMessenger();
     void SetNewValue(G4UIcommand *command, G4String newValue) override;
 };

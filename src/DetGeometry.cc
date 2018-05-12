@@ -12,6 +12,7 @@ DetGeometry::DetGeometry() {
     box_mat = nist->FindOrBuildMaterial("G4_SODIUM_IODIDE");
     G4cout << "Geometry of detector is build successfully\t\t\t\t\t\tOK!!!" << G4endl;
     boxYsize = 10 * cm;
+    position = G4ThreeVector(-10*cm,0,0);
 }
 
 DetGeometry::~DetGeometry() {
@@ -32,7 +33,7 @@ G4VPhysicalVolume* DetGeometry::Construct() {
     G4Box *box = new G4Box("box", 5*cm, boxYsize/2., 5*cm);
     auto box_log = new G4LogicalVolume(box, box_mat, "box_LOG");
     box_log->SetVisAttributes(G4Colour::Red());
-    new G4PVPlacement(new G4RotationMatrix(0,0,psi), G4ThreeVector(), box_log, "box_PV", logicWorld, false, 0);
+    new G4PVPlacement(new G4RotationMatrix(0,0,psi), position, box_log, "box_PV", logicWorld, false, 0);
 
     return physWorld;
 }
@@ -56,4 +57,11 @@ void DetGeometry::setDetMaterial(G4String newValue) {
     G4RunManager::GetRunManager()->DefineWorldVolume(Construct());
     G4RunManager::GetRunManager()->ReinitializeGeometry();
 }
+
+void DetGeometry::setPosition(G4ThreeVector vect) {
+    DetGeometry::position = vect;
+    G4RunManager::GetRunManager()->DefineWorldVolume(Construct());
+    G4RunManager::GetRunManager()->ReinitializeGeometry();
+}
+
 

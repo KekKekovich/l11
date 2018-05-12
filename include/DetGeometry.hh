@@ -39,9 +39,13 @@ private:
     G4double                    boxYsize;
     G4double                    psi;
     G4Material*                 box_mat;
+    G4ThreeVector             position;
+    G4String                  pName;
 public:
     void setPsi(G4double psi);
+    void setPosition(G4ThreeVector position);
     void setDetMaterial(G4String newValue);
+
 
 private:
     DetGeometryMessenger*       detGeometryMessenger;

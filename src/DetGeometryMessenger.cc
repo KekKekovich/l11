@@ -7,6 +7,7 @@
 #include <DetGeometryMessenger.hh>
 
 
+
 void DetGeometryMessenger::SetNewValue(G4UIcommand *command, G4String newValue) {
     if(command == cmd)
         exit(80);
@@ -18,13 +19,18 @@ void DetGeometryMessenger::SetNewValue(G4UIcommand *command, G4String newValue) 
         my_energy->setEnergy(energy_cmd->GetNewDoubleValue(newValue));
     }
     if(command == cmd1) {
-        G4cout<<"TI PYDOR"<<"\n";
+        G4cout<<"QQ"<<"\n";
     }
     if(command == mat_cmd) {
         my_geom -> setDetMaterial(newValue);
     }
+    if(command == cmdPosition) {
+        my_geom ->setPosition(cmdPosition -> GetNew3VectorValue(newValue));
+    }
 
-}
+    }
+
+
 
 DetGeometryMessenger::DetGeometryMessenger(DetGeometry* geom): my_geom(geom){
     auto dir = new G4UIdirectory("/my_geom/");
@@ -38,12 +44,19 @@ DetGeometryMessenger::DetGeometryMessenger(DetGeometry* geom): my_geom(geom){
     psi_cmd->SetGuidance("Set Psi");
     mat_cmd = new G4UIcmdWithAString("/my_geom/cmdMat",this);
     mat_cmd -> SetParameterName("name",false);
+    cmdPosition = new G4UIcmdWith3Vector("/my_geom/Position",this);
 
 }
 
 DetGeometryMessenger::DetGeometryMessenger(PrimaryGen *energy): my_energy(energy) {
     energy_cmd = new G4UIcmdWithADouble("/my_geom/energy_cmd", this);
 }
+
+DetGeometryMessenger::DetGeometryMessenger(StepAction *pName): my_name(pName) {
+    name_cmd = new G4UIcmdWithAString("/my_geom/name_cmd",this);
+}
+
+
 
 DetGeometryMessenger::~DetGeometryMessenger() {
 
