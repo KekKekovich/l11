@@ -21,14 +21,17 @@ class DetGeometryMessenger;
 class PrimaryGen : public G4VUserPrimaryGeneratorAction
 {
 private:
+
     G4ParticleGun*  gun;
     DetGeometryMessenger * detGeometryMessenger;
     G4double energy = 661*keV;
+    G4ThreeVector position = G4ThreeVector(0, 0, 0);;
 public:
     PrimaryGen();
     virtual ~PrimaryGen();
     virtual void GeneratePrimaries(G4Event*);
     void setEnergy(G4double energy);
+    void setPosition(G4ThreeVector vect);
 };
 
 #endif //CPROJECT_PRIMARYGEN_HH

@@ -7,20 +7,41 @@
 
 #include <G4UserEventAction.hh>
 #include <RunAction.hh>
+#include <pwdefs.hh>
+#include <DetGeometryMessenger.hh>
+
+class RunAction;
+class DetGeometryMessenger;
+
+
 class EventAction : public G4UserEventAction{
-private:
-    G4double EnergyDeposit;
-    RunAction* run;
-public:
-    void addEnergyDeposit(G4double EnergyDeposit);
 
-    EventAction(RunAction* run);
-
-public:
-
-
+//private:
+//    G4double EnergyDeposit;
+//    RunAction* run;
+//public:
+//    void addEnergyDeposit(G4double EnergyDeposit);
+//
+//    EventAction(RunAction* run);
+//
+//public:
+//
+//
     void BeginOfEventAction(const G4Event *anEvent) override;
 
     void EndOfEventAction(const G4Event *anEvent) override;
+RunAction* runAction;
+    G4double threshold;
+    DetGeometryMessenger *messenger;
+
+public:
+    EventAction();
+
+    void setThreshold(G4double Threshold);
+
+    EventAction(RunAction *runAction);
+
+    virtual ~EventAction();
+
 };
 #endif //L11_EVENTACTION_HH

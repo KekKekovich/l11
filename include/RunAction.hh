@@ -16,9 +16,11 @@ public:
     void setResult();
 
 public:
+    RunAction(){}
     RunAction(Scoring* newScoring){scoring = newScoring;}
     void BeginOfRunAction(const G4Run* aRun);
     void EndOfRunAction(const G4Run* aRun);
+
 };
 
 

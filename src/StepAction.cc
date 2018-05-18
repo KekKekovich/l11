@@ -7,8 +7,8 @@
 #include <G4UserSteppingAction.hh>
 #include <StepAction.hh>
 
-StepAction::StepAction(EventAction *_event) {
-    eventAction = _event;
+StepAction::StepAction(EventAction *_event): event(_event) {
+   StepActionMessenger = new DetGeometryMessenger(this);
 }
 
 
@@ -17,5 +17,12 @@ void StepAction::UserSteppingAction(const G4Step *aStep) {
     aStep->GetTrack()->GetVolume()->GetName();
 
 }
+void StepAction::setName(G4String name) {
+    StepAction::pName=name;
+    std::cout<< pName << std::endl;
+}
+
+
+
 
 

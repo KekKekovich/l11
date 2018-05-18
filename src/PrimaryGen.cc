@@ -9,8 +9,8 @@ PrimaryGen::PrimaryGen()
     gun = new G4ParticleGun(1);
     G4cout<<"Primary particles generator is created successfully\t\tOK!!!"<<G4endl;
     gun->SetParticleDefinition(G4Gamma::GammaDefinition());
-    gun->SetParticlePosition(G4ThreeVector(0, 0, -10*cm));
-    gun->SetParticleMomentumDirection(G4ThreeVector(0,0,1));
+
+    gun->SetParticleMomentumDirection(G4ThreeVector(-1,0,0));
 
 }
 
@@ -21,6 +21,7 @@ PrimaryGen::~PrimaryGen()
 }
 
 void PrimaryGen::GeneratePrimaries(G4Event* anEvent) {
+    gun->SetParticlePosition(position);
     gun->SetParticleEnergy(energy);
     G4cout << " Energy = " << energy << "\n";
     gun->GeneratePrimaryVertex(anEvent);
@@ -29,6 +30,11 @@ void PrimaryGen::GeneratePrimaries(G4Event* anEvent) {
 void PrimaryGen::setEnergy(G4double energy) {
     PrimaryGen::energy = energy* keV;
 }
+
+void PrimaryGen::setPosition(G4ThreeVector vect) {
+    PrimaryGen::position = vect;
+}
+
 
 
 

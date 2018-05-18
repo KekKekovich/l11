@@ -27,8 +27,16 @@ void DetGeometryMessenger::SetNewValue(G4UIcommand *command, G4String newValue) 
     if(command == cmdPosition) {
         my_geom ->setPosition(cmdPosition -> GetNew3VectorValue(newValue));
     }
-
+    if(command == threshold_cmd) {
+        my_event ->setThreshold(threshold_cmd -> GetNewDoubleValue(newValue));
     }
+    if(command == cmd_gunpos) {
+        my_energy ->setPosition(cmd_gunpos -> GetNew3VectorValue(newValue));
+    }
+    if(command == name_cmd) {
+        my_name ->setName(newValue);
+    }
+}
 
 
 
@@ -50,16 +58,23 @@ DetGeometryMessenger::DetGeometryMessenger(DetGeometry* geom): my_geom(geom){
 
 DetGeometryMessenger::DetGeometryMessenger(PrimaryGen *energy): my_energy(energy) {
     energy_cmd = new G4UIcmdWithADouble("/my_geom/energy_cmd", this);
+    cmd_gunpos = new G4UIcmdWith3Vector("/my_geom/gunpos",this);
 }
+
+
 
 DetGeometryMessenger::DetGeometryMessenger(StepAction *pName): my_name(pName) {
     name_cmd = new G4UIcmdWithAString("/my_geom/name_cmd",this);
 }
 
-
+DetGeometryMessenger::DetGeometryMessenger(EventAction *event): my_event(event) {
+    threshold_cmd = new G4UIcmdWithADouble("/my_geom/threshold_cmd", this);
+}
 
 DetGeometryMessenger::~DetGeometryMessenger() {
 
 }
+
+
 
 
