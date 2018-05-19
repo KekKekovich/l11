@@ -3,6 +3,7 @@
 #include <G4VisAttributes.hh>
 #include <G4GeometryManager.hh>
 #include <G4RunManager.hh>
+#include <G4Tubs.hh>
 
 DetGeometry::DetGeometry() {
     detGeometryMessenger = new DetGeometryMessenger(this);
@@ -13,6 +14,7 @@ DetGeometry::DetGeometry() {
     G4cout << "Geometry of detector is build successfully\t\t\t\t\t\tOK!!!" << G4endl;
     boxYsize = 10 * cm;
     position = G4ThreeVector(-10*cm,0,0);
+//    rotation = 45*deg;
 }
 
 DetGeometry::~DetGeometry() {
@@ -30,10 +32,17 @@ G4VPhysicalVolume* DetGeometry::Construct() {
     logicWorld->SetVisAttributes(G4VisAttributes::Invisible);
     physWorld = new G4PVPlacement(0, G4ThreeVector(), logicWorld, "phyWorld", 0, false, 0);
 
-    G4Box *box = new G4Box("box", 5*cm, boxYsize/2., 5*cm);
-    auto box_log = new G4LogicalVolume(box, box_mat, "box_LOG");
-    box_log->SetVisAttributes(G4Colour::Red());
-    new G4PVPlacement(new G4RotationMatrix(0,0,psi), position, box_log, "box_PV", logicWorld, false, 0);
+    auto R = new G4RotationMatrix;
+
+
+    R -> rotateX(0);
+    R -> rotateY(psi*deg);
+    R -> rotateZ(0);
+
+    auto tubs = new G4Tubs("tube", 0, 0.5*m, 3*m,0, 360*deg);
+    auto tubs_log = new G4LogicalVolume(tubs, box_mat, "tubs_LOG");
+    tubs_log->SetVisAttributes(G4Colour::Red());
+    new  G4PVPlacement(R, position, tubs_log, "tubs_PV", logicWorld, false, 0);
 
     return physWorld;
 }
@@ -47,7 +56,7 @@ void DetGeometry::setBoxYsize(G4double boxYsize) {
 }
 
 void DetGeometry::setPsi(G4double psi) {
-    DetGeometry::psi = psi*deg;
+    DetGeometry::psi = psi;
     G4RunManager::GetRunManager()->DefineWorldVolume(Construct());
     G4RunManager::GetRunManager()->ReinitializeGeometry();
 }
@@ -64,4 +73,9 @@ void DetGeometry::setPosition(G4ThreeVector vect) {
     G4RunManager::GetRunManager()->ReinitializeGeometry();
 }
 
+//void DetGeometry::setRotation(G4double rot) {
+//    DetGeometry::rotation = rot;
+//    G4RunManager::GetRunManager()->DefineWorldVolume(Construct());
+//    G4RunManager::GetRunManager()->ReinitializeGeometry();
+//}
 

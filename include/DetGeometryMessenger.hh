@@ -32,11 +32,13 @@ class DetGeometryMessenger: public G4UImessenger{
     G4UIcmdWithAString* name_cmd;
     G4UIcmdWithADouble* threshold_cmd;
     G4UIcmdWith3Vector* cmd_gunpos;
+    G4UIcmdWithADouble* cmd_rotation;
 
     DetGeometry* my_geom;
     PrimaryGen * my_energy;
     StepAction * my_name;
     EventAction *my_event;
+
 public:
     DetGeometryMessenger(DetGeometry* geom);
     DetGeometryMessenger(PrimaryGen* energy);
