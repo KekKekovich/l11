@@ -33,8 +33,7 @@ G4VPhysicalVolume* DetGeometry::Construct() {
     physWorld = new G4PVPlacement(0, G4ThreeVector(), logicWorld, "phyWorld", 0, false, 0);
 
     auto R = new G4RotationMatrix;
-
-
+    
     R -> rotateX(0);
     R -> rotateY(psi*deg);
     R -> rotateZ(0);
