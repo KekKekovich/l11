@@ -14,13 +14,15 @@ class DetGeometryMessenger;
 class EventAction;
 class StepAction: public G4UserSteppingAction{
 private:
-    EventAction* event;
+    EventAction* eventAction;
     G4String pName;
+    G4String particleName;
     DetGeometryMessenger* StepActionMessenger;
 public:
     StepAction(EventAction* event);
-    void UserSteppingAction(const G4Step*);
+    void UserSteppingAction(const G4Step*) override;
     void setName(G4String name);
+    void setParticleName(G4String name);
 };
 
 

@@ -27,6 +27,7 @@ class DetGeometry  : public G4VUserDetectorConstruction
 private:
     G4NistManager*              nist;
     G4Material*                 world_mat;
+
     G4double                    world_sizeXYZ;
     G4Box*                      solidWorld;
     G4LogicalVolume*            logicWorld;
@@ -36,13 +37,18 @@ public:
     void setBoxYsize(G4double boxYsize);
 
 private:
+    G4Material*                 tube_mat;
     G4double                    boxYsize;
     G4double                    psi;
+    G4double                    phi;
+    G4double                    theta;
     G4Material*                 box_mat;
+
     G4ThreeVector             position;
     G4String                  pName;
 public:
     void setPsi(G4double psi);
+
     void setPosition(G4ThreeVector position);
     void setDetMaterial(G4String newValue);
 

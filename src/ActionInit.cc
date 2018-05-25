@@ -4,8 +4,9 @@
 #include <EventAction.hh>
 #include "../include/ActionInit.hh"
 
-ActionInit::ActionInit()
-{ scoring = new Scoring();}
+ActionInit::ActionInit() {
+//scoring = new Scoring();
+}
 
 ActionInit::~ActionInit()
 { }

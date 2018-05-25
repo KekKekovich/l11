@@ -6,18 +6,23 @@
 #define L11_RUNACTION_HH
 
 #include <G4UserRunAction.hh>
-#include "Scoring.hh"
+#include <map>
+#include <G4String.hh>
+//#include "Scoring.hh"
 
 class RunAction : public G4UserRunAction{
 private :
-    G4double result;
-    Scoring* scoring;
+    std::map<G4double, G4int> *res;
+    G4double result, N1;
+//    Scoring* scoring;
 public:
     void setResult();
+    void AddEvent(G4String name, G4double energy);
 
 public:
-    RunAction(){}
-    RunAction(Scoring* newScoring){scoring = newScoring;}
+    RunAction();
+    ~RunAction();
+//    RunAction(Scoring* newScoring){scoring = newScoring;}
     void BeginOfRunAction(const G4Run* aRun);
     void EndOfRunAction(const G4Run* aRun);
 

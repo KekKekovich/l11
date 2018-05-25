@@ -7,7 +7,7 @@ G4Loader::G4Loader(int argc, char** argv){
     CLHEP::HepRandom::setTheSeed(time(NULL));
 
 #ifdef G4MULTITHREADED
-    runManager = new G4MTRunManager;
+    runManager = new G4RunManager;
 #else
     runManager = new G4RunManager;
 #endif

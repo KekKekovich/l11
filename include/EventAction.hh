@@ -18,24 +18,27 @@ class EventAction : public G4UserEventAction{
 
 //private:
 //    G4double EnergyDeposit;
-//    RunAction* run;
+    RunAction* run;
+    std::map<G4String, G4double> *result;
 //public:
 //    void addEnergyDeposit(G4double EnergyDeposit);
 //
 //    EventAction(RunAction* run);
 //
-//public:
-//
-//
-    void BeginOfEventAction(const G4Event *anEvent) override;
+public:
 
-    void EndOfEventAction(const G4Event *anEvent) override;
+
+    virtual void BeginOfEventAction(const G4Event *anEvent);
+
+    virtual void EndOfEventAction(const G4Event *anEvent);
 RunAction* runAction;
     G4double threshold;
     DetGeometryMessenger *messenger;
 
 public:
     EventAction();
+
+    void Data(G4String name, G4double Energy);
 
     void setThreshold(G4double Threshold);
 

@@ -39,7 +39,7 @@ class G4Loader{
 private:
 
 #ifdef G4MULTITHREADED
-    G4MTRunManager* runManager;
+    G4RunManager* runManager;
 #else
     G4RunManager* runManager;
 #endif

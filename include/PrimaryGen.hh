@@ -18,11 +18,13 @@ class G4ParticleGun;
 class G4Event;
 class DetGeometryMessenger;
 
+
 class PrimaryGen : public G4VUserPrimaryGeneratorAction
 {
 private:
 
     G4ParticleGun*  gun;
+    G4ParticleGun* gun1;
     DetGeometryMessenger * detGeometryMessenger;
     G4double energy = 661*keV;
     G4ThreeVector position = G4ThreeVector(0, 0, 0);;
